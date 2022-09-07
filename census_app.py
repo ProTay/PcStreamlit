@@ -51,13 +51,10 @@ if st.sidebar.checkbox('Display Raw Data'):
 	plot_list = st.sidebar.multiselect("Select Plot Types:",('Pie Chart', 'Box Chart', 'Count Plot'))
 if 'Pie Chart' in plot_list:
 	income_data = census_df['income'].value_counts()
-	gender_data = census_df['gender'].value_counts()
-	pie_data = [income_data, gender_data]
-	for i in pie_data:
-		st.subheader('Pie Chart for Income Group and Gender')
-		plt.figure(figsize = (14,6))
-		plt.pie(pie_data, labels = pie_data.index, autopct = '%1.2f%%', startangle = 30, explode = np.linspace(0.06, .16, 6))
-		st.pyplot()
+	st.subheader('Pie Chart for Income Group and Gender')
+	plt.figure(figsize = (14,6))
+	plt.pie(income_data, labels = income_data.index, autopct = '%1.2f%%', startangle = 30, explode = np.linspace(0.06, .16, 6))
+	st.pyplot()
 if 'Box Chart' in plot_list:
 	income_bdata = 'income'
 	gender_bdata = 'gender'
