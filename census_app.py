@@ -1,4 +1,5 @@
 
+
 # Import modules
 import numpy as np
 import pandas as pd
@@ -43,4 +44,30 @@ def load_data():
 
 census_df = load_data()
 st.set_option('deprecation.showPyplotGlobalUse', False)
+st.sidebar.title('Census Data Visualisation App')
 st.title('Census Data Visualisation App')
+if st.checkbox('Display Raw Data'):
+	plot_list = st.multiselect('Select Plot Types:',('Pie Chart', 'Box Chart', 'Count Plot'))
+	if 'Pie Chart' in plot_list:
+		income_data = census_df['income'].value_counts()
+		gender_data = census_df['gender'].value_counts()
+		pie_data = [income_data, gender_data]
+		for i in pie_data:
+			st.subheader('Pie Chart for Income Group and Gender')
+			plt.figure(figsize = (14,6))
+			plt.pie(pie_data, labels = pie_data.index, autopct = '%1.2f%%', startangle = 30, explode = np.linspace(0.06, .16, 6))
+			st.pyplot()
+	if 'Box Chart' in plot_list:
+		income_bdata = 'income'
+		gender_bdata = 'gender'
+		box_data = [income_bdata, gender_bdata]
+		for i in box_data:
+			plt.figure(figsize = (12,2))
+			st.subheader(f'Box Plot for {columns}')
+			sns.boxplot(census_df[i])
+			st.pyplot()
+	if 'Count Plot' in plot_list:
+		st.subheader('Count Plot for workclss')
+		plt.figure(figsize = (12,6))
+		sns.countplot(x = 'workclass', data = census_df)
+		st.pyplot()
