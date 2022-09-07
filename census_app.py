@@ -45,6 +45,7 @@ def load_data():
 census_df = load_data()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.sidebar.title('Census Data Visualisation App')
+st.dataFrame(census_df)
 st.title('Census Data Visualisation App')
 if st.checkbox('Display Raw Data'):
 	plot_list = st.multiselect('Select Plot Types:',('Pie Chart', 'Box Chart', 'Count Plot'))
