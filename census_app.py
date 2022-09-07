@@ -56,8 +56,8 @@ if 'Pie Chart' in plot_list:
 	gender_data = census_df['gender'].value_counts()
 	st.subheader('Pie Chart for Income Group and Gender')
 	plt.figure(figsize = (14,6))
-	plt.pie(income_data, labels = income_data.index, autopct = '%1.2f%%', startangle = 30)
-	plt.pie(gender_data, lables = gender_data.index, autopct = '%1.2f%%', startangle = 30)
+	plt.pie(income_data, labels = income_data.index, autopct = '%1.2f%%')
+	plt.pie(gender_data, lables = gender_data.index, autopct = '%1.2f%%')
 	st.pyplot()
 if 'Box Chart' in plot_list:
 	income_bdata = 'income'
@@ -65,11 +65,11 @@ if 'Box Chart' in plot_list:
 	box_data = [income_bdata, gender_bdata]
 	for i in box_data:
 		plt.figure(figsize = (12,2))
-		st.subheader(f'Box Plot for {columns}')
+		st.subheader(f'Box Plot for {i}')
 		sns.boxplot(census_df[i])
 		st.pyplot()
 if 'Count Plot' in plot_list:
-	st.subheader('Count Plot for workclss')
+	st.subheader('Count Plot for workclass')
 	plt.figure(figsize = (12,6))
 	sns.countplot(x = 'workclass', data = census_df)
 	st.pyplot()
