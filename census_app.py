@@ -67,8 +67,8 @@ if 'Box Chart' in plot_list:
 	box_data = [income_bdata, gender_bdata]
 	for i in box_data:
 		plt.figure(figsize = (12,2))
-		st.subheader(f'Box Plot for {columns}')
-		sns.boxplot(census_df[i])
+		st.subheader(f'Box Plot for {i}')
+		sns.boxplot(x = 'hours-per-week' , y = i, data = census_df)
 		st.pyplot()
 if 'Count Plot' in plot_list:
 	st.subheader('Count Plot for workclss')
